@@ -1,71 +1,29 @@
-/*This sets the boundary for the whole canvas*/
-var CANVAS_WIDTH = 480;
-var CANVAS_HEIGHT = 320;
-
-var canvasElement = $("<canvas width='" + CANVAS_WIDTH +
-                      "' height='" + CANVAS_HEIGHT + "'></canvas>");
-var canvas = canvasElement.get(0).getContext("2d");
-canvasElement.appendTo('body');
+$(document).ready(function() {
 
 
-/*This sets the interval*/
+$('.welcome button').on('click', function (event){
+    event.preventDefault();
 
-var FPS = 30;
-setInterval(function() {
-  change();
-  draw();
-}, 1000/FPS);
+    var char_type= $(this).attr('name'),
+        char_name= $(this).text(),
+        bguy = '';
 
-/*This function change is defined in the inverval and cause changes and action*/
-var textX = 50;
-var textY = 50;
+        switch(char_type) {
+          case "1":
+            bguy='nuclearTruck';
+            break;
 
-function change() {
-  textX += 1;
-  textY += 1;
-}
+          case "2":
+            bguy='agentSmith';
+            break;
+        }
 
-/*This function actual places it on the canvas and implements the action from the changes/update functiom  */
+        var url = 'game.html?player=' + char_name + '&bguy='+ bguy;
 
-function draw() {
-  canvas.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);/*this stops it from reprinting*/
+        window.open(url,'','_self');
+        //$('.ggName').prepend(player.name).find('.ggHealth').text(player.health).css("color","green");
+        // $('.bgName').prepend(monster.name).find('.bgHealth').text(monster.health).css("color","green");
+      }
+);
 
-  canvas.fillStyle = "#000";
-  canvas.fillText("Sup Bro!", textX, textY);
-}
-
-/*This function creates the actual player object */
-
-var player = {
-  color: "#00A",
-  x: 220,
-  y: 270,
-  width: 32,
-  height: 32,
-  draw: function() {
-    canvas.fillStyle = this.color;
-    canvas.fillRect(this.x, this.y, this.width, this.height);
-  }
-};
-/*At this point, there is just a square, nothing is moving */
-
-function draw() {
-  canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  player.draw();
-}
-
-
-
-/*Right here: You need to save the hotkeys plugin and key status so that you can control your object */
-
-
-
-function update() {
-  if (keydown.left) {
-    player.x -= 2;
-  }
-
-  if (keydown.right) {
-    player.x += 2;
-  }
-};
+});
