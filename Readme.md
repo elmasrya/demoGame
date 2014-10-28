@@ -1,3 +1,9 @@
-## Yo, I'm a Readme
+demoGame
 
-You should probably update me so people looking at your code have an idea what it is being used for :)
+This game was a test version of minuplating the canvs.
+
+Not function because the code the is still broken for this one.
+
+I used jQuery, Underscore, and sass
+
+I am the only author
